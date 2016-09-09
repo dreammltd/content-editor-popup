@@ -5,9 +5,7 @@ import classes from './layout.css';
 function CoreLayout({children}) {
 	return (
 		<div className={classes.container}>
-			<div className={classes.view}>
-				{children}
-			</div>
+			{children}
 		</div>
 	);
 }
