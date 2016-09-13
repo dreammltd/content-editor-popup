@@ -2,14 +2,17 @@ class ParentApiInstance {
 	contentEventSource = null;
 
 	handleMessage(event) {
-		console.log('rec msg in editor!', event.data);
-		if (event.data.type) {
-			switch (event.data.type) {
-				case 'init':
-					this.contentEventSource = event.source;
-					this.initContentEditor(event.data.params);
-					break;
-			}
+		const {type} = event.data;
+		if (!type)
+			return;
+
+		console.log(`content --> editor '${type}'`, event.data);
+
+		switch (type) {
+			case 'init':
+				this.contentEventSource = event.source;
+				this.initContentEditor(event.data.params);
+				break;
 		}
 	}
 
@@ -19,17 +22,16 @@ class ParentApiInstance {
 			return;
 		}
 
-		window.frames[0].postMessage({isEditorMessage: true, ...message}, '*');
+		this.contentEventSource.postMessage({isEditorMessage: true, ...message}, '*');
 	}
 
 	initContentEditor({defaults, textItems}) {
-		console.log('editor init', defaults);
 		this.sendMessageToContent({type: 'editorFound'});
 	}
 
 	init() {
 		window.addEventListener('message', event => {
-			// crude but effective message filtering
+// crude but effective message filtering
 			if (event.data.isEditorMessage)
 				this.handleMessage(event);
 		});
