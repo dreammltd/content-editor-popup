@@ -16,7 +16,9 @@ class ParentApiInstance {
 
 	init(){
 		window.addEventListener('message', event => {
-			this.handleMessage(event);
+			// crude but effective message filtering
+			if(event.data.isEditorMessage)
+				this.handleMessage(event);
 		});
 	}
 }
