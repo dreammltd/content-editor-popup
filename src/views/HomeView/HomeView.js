@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import classes from './home.css';
-import ParentEditorApi from './api/api';
+import ParentEditorApi from '../../api/api';
 
 export default class HomeView extends React.Component {
 
