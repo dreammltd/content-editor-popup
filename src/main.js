@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import makeRoutes from './routes';
 import Root from './containers/Root';
 import configureStore from './redux/configureStore';
+import './api/api';
 
 // Create redux store and sync with react-router-redux. We have installed the
 // react-router-redux reducer under the key "router" in src/routes/index.js,
