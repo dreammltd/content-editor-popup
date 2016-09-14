@@ -1,13 +1,16 @@
 /* @flow */
-import React from 'react';
+import React, {PropTypes} from 'react';
 import classes from './home.css';
 import ParentEditorApi from '../../api/api';
 
 export default class HomeView extends React.Component {
 
-	componentDidMount(){
-		ParentEditorApi.init();
+	static contextTypes = {
+		dispatch: PropTypes.any
+	};
 
+	componentDidMount(){
+		ParentEditorApi.init(dispatch);
 	}
 
 	render() {
