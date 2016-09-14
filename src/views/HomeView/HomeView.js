@@ -10,6 +10,7 @@ export default class HomeView extends React.Component {
 	};
 
 	componentDidMount(){
+		const {dispatch} = this.context;
 		ParentEditorApi.init(dispatch);
 	}
 
