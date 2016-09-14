@@ -7,8 +7,8 @@ export default function configureStore (initialState = {}) {
   // Compose final middleware and use devtools in debug environment
 	let middleware = applyMiddleware(thunk);
 	if (__DEBUG__) {
-		var createLogger = require('redux-logger');
-		var logger = createLogger();
+		const createLogger = require('redux-logger');
+		const logger = createLogger();
 		middleware = applyMiddleware(thunk, logger);
 	}
 
