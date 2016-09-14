@@ -31,7 +31,13 @@ class ParentApiInstance {
 
 	initContentEditor({defaults, textItems}) {
 		this.sendMessageToContent({type: 'editorFound'});
-		this.dispatch(initTextItems(textItems));
+		if(textItems){
+			this.dispatch(initTextItems(textItems));
+		}
+		else {
+			console.log('editor error - no textItems passed in.  this must be a deployed course for editing to work');
+		}
+
 	}
 
 	init(dispatch) {
