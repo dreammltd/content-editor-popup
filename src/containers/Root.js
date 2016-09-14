@@ -9,6 +9,14 @@ export default class Root extends React.Component {
 		store: PropTypes.object.isRequired
 	};
 
+	static childContextTypes = {
+		dispatch: React.PropTypes.any
+	};
+
+	getChildContext() {
+		return {dispatch: this.props.store.dispatch};
+	}
+
 	get content() {
 		return (
 			<Router history={this.props.history}>
