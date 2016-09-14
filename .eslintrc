@@ -25,7 +25,7 @@
 	"flow-vars/define-flow-type": 0,
 	"flow-vars/use-flow-type": 0,
 	"indent": [
-	  2,
+	  0,
 	  "tab"
 	],
 	"react/jsx-indent-props": [

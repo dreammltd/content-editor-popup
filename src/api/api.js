@@ -13,10 +13,10 @@ class ParentApiInstance {
 		console.log(`content --> editor '${type}'`, event.data);
 
 		switch (type) {
-		case 'init':
-			this.contentEventSource = event.source;
-			this.initContentEditor(event.data.params);
-			break;
+			case 'init':
+				this.contentEventSource = event.source;
+				this.initContentEditor(event.data.params);
+				break;
 		}
 	}
 
@@ -31,17 +31,15 @@ class ParentApiInstance {
 
 	initContentEditor({defaults, textItems}) {
 		this.sendMessageToContent({type: 'editorFound'});
-		if(textItems){
+		if (textItems) {
 			this.dispatch(initTextItems(textItems));
-		}
-		else {
+		} else {
 			console.log('editor error - no textItems passed in.  this must be a deployed course for editing to work');
 		}
-
 	}
 
 	init(dispatch) {
-		if(!dispatch){
+		if (!dispatch) {
 			throw new Error('No dispatch passed to ParentApi init');
 		}
 

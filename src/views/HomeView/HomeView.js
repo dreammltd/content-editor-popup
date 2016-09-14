@@ -9,7 +9,7 @@ export default class HomeView extends React.Component {
 		dispatch: PropTypes.any
 	};
 
-	componentDidMount(){
+	componentDidMount() {
 		const {dispatch} = this.context;
 		ParentEditorApi.init(dispatch);
 	}
@@ -18,7 +18,7 @@ export default class HomeView extends React.Component {
 		return (
 			<div>
 				<iframe id='contentframe' src='http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html'
-						className={classes.iframe} frameBorder={0}/>
+						className={classes.iframe} frameBorder={0} />
 				<div className={classes.editor}>
 					Editor
 				</div>
