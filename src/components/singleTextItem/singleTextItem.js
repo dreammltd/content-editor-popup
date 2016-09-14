@@ -13,7 +13,7 @@ export default class SingleTextItem extends Component {
 		super(props);
 
 		this.state = {
-			editItemValue: props.textItemValue ? props.textItemValue.trim() : ''
+			editItemValue: props.textItemValue ? props.textItemValue.trim().replace(/ +/g, ' ') : ''
 		};
 	}
 
@@ -33,11 +33,15 @@ export default class SingleTextItem extends Component {
 		const {editItemValue} = this.state;
 
 		const keySplit = textItemKey.split('-');
-		const keyToDisplay = keySplit[keySplit.length-1];
+		const keyToDisplay = `${keySplit[keySplit.length-2]}-${keySplit[keySplit.length-1]}`;
 
 		return (<div>
-			<label className={classes.keyLabel}>{keyToDisplay}</label>
-			<input type='text' className={classes.inputText} onChange={this.textChange} value={editItemValue} />
+
+			<input type='text'
+				   title={keyToDisplay}
+				   className={classes.inputText}
+				   onChange={this.textChange}
+				   value={editItemValue} />
 		</div>);
 	}
 }
