@@ -7,4 +7,5 @@
 	font-size: 11px;
 	padding: 1px;
 	border: 1px solid #ddd;
+	width: calc(100% - 10px);
 }

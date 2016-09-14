@@ -14,8 +14,12 @@ export default class SingleTextItem extends Component {
 
 	render() {
 		const {textItemKey, textItemValue} = this.props;
+
+		const keySplit = textItemKey.split('-');
+		const keyToDisplay = keySplit[keySplit.length-1];
+
 		return (<div>
-			<label className={classes.keyLabel}>{textItemKey}</label>
+			<label className={classes.keyLabel}>{keyToDisplay}</label>
 			<input type='text' className={classes.inputText} onChange={this.textChange} value={textItemValue} />
 		</div>);
 	}
