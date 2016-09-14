@@ -1,0 +1,10 @@
+.label{
+	font-size: 9px;
+	color: #999;
+}
+
+.inputText {
+	font-size: 11px;
+	padding: 1px;
+	border: 1px solid #ddd;
+}
