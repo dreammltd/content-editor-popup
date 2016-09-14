@@ -36,6 +36,7 @@
 	  0,
 	  "tab"
 	],
+	"react/jsx-space-before-closing":0,
 	"no-mixed-spaces-and-tabs": [
 	  0,
 	  "smart-tabs"
