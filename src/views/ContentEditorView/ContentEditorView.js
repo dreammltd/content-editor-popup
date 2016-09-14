@@ -1,9 +1,10 @@
 /* @flow */
 import React, {PropTypes} from 'react';
-import classes from './home.css';
+import {connect} from 'react-redux';
+import classes from './contentEditor.css';
 import ParentEditorApi from '../../api/api';
 
-export default class HomeView extends React.Component {
+class ContentEditorView extends React.Component {
 
 	static contextTypes = {
 		dispatch: PropTypes.any
@@ -27,6 +28,4 @@ export default class HomeView extends React.Component {
 	}
 }
 
-
-
-
+export default connect(state => ({textItems: state.textItems}))(ContentEditorView);
