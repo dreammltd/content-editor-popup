@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
-import currentUser from './modules/currentUser';
+import textItems from './modules/textItems';
 
 export default combineReducers({
-	currentUser,
+	textItems,
 	router
 });
