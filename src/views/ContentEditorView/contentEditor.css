@@ -6,5 +6,6 @@
 }
 
 .editor {
-
+	height: 700px;
+	overflow: auto;
 }
