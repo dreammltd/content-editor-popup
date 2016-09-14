@@ -3,22 +3,23 @@ class ParentApiInstance {
 
 	handleMessage(event) {
 		const {type} = event.data;
-		if (!type)
+		if (!type) {
 			return;
+		}
 
 		console.log(`content --> editor '${type}'`, event.data);
 
 		switch (type) {
-			case 'init':
-				this.contentEventSource = event.source;
-				this.initContentEditor(event.data.params);
-				break;
+		case 'init':
+			this.contentEventSource = event.source;
+			this.initContentEditor(event.data.params);
+			break;
 		}
 	}
 
 	sendMessageToContent(message) {
 		if (!this.contentEventSource) {
-			console.log(`error: sendMessageToContent() editor not initialised`, message);
+			console.log('error: sendMessageToContent() editor not initialised', message);
 			return;
 		}
 
@@ -32,8 +33,9 @@ class ParentApiInstance {
 	init() {
 		window.addEventListener('message', event => {
 // crude but effective message filtering
-			if (event.data.isEditorMessage)
+			if (event.data.isEditorMessage) {
 				this.handleMessage(event);
+			}
 		});
 	}
 }
