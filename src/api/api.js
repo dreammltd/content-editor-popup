@@ -1,3 +1,5 @@
+import {initTextItems} from '../redux/modules/textItems';
+
 class ParentApiInstance {
 	contentEventSource = null;
 	dispatch = null;
@@ -29,6 +31,7 @@ class ParentApiInstance {
 
 	initContentEditor({defaults, textItems}) {
 		this.sendMessageToContent({type: 'editorFound'});
+		this.dispatch(initTextItems(textItems));
 	}
 
 	init(dispatch) {
