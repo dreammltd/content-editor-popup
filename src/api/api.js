@@ -47,11 +47,15 @@ class ParentApiInstance {
 		this.dispatch = dispatch;
 
 		window.addEventListener('message', event => {
-// crude but effective message filtering
+			// crude but effective message filtering
 			if (event.data.isEditorMessage) {
 				this.handleMessage(event);
 			}
 		});
+	}
+
+	textItemChanged({key, value}) {
+		this.sendMessageToContent({type: 'updateText', key, value});
 	}
 }
 

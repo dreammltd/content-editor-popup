@@ -19,6 +19,10 @@ class ContentEditorView extends React.Component {
 		ParentEditorApi.init(dispatch);
 	}
 
+	textItemChanged({key, value}) {
+		ParentEditorApi.textItemChanged({key, value});
+	}
+
 	render() {
 		const {textItems} = this.props;
 		const textItemKeys = Object.keys(textItems);
@@ -28,7 +32,11 @@ class ContentEditorView extends React.Component {
 				<iframe id='contentframe' src='http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html'
 						className={classes.iframe} frameBorder={0}/>
 				<div className={classes.editor}>
-					{textItemKeys.map(key => <SingleTextItem textItemKey={key} textItemValue={textItems[key]}/>)}
+					{textItemKeys.map(key => <SingleTextItem
+						key={key}
+						textItemKey={key}
+						textItemValue={textItems[key]}
+						onChange={this.textItemChanged} />)}
 				</div>
 			</div>
 		);
