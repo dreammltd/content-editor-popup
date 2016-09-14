@@ -1,5 +1,6 @@
 class ParentApiInstance {
 	contentEventSource = null;
+	dispatch = null;
 
 	handleMessage(event) {
 		const {type} = event.data;
@@ -30,7 +31,13 @@ class ParentApiInstance {
 		this.sendMessageToContent({type: 'editorFound'});
 	}
 
-	init() {
+	init(dispatch) {
+		if(!dispatch){
+			throw new Error('No dispatch passed to ParentApi init');
+		}
+
+		this.dispatch = dispatch;
+
 		window.addEventListener('message', event => {
 // crude but effective message filtering
 			if (event.data.isEditorMessage) {
