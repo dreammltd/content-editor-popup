@@ -41,11 +41,11 @@ class ContentEditorView extends React.Component {
 		// find the input with the key id
 		const input = document.getElementById(`input-${key}`);
 		// can be missing if we're not rendering input, e.g. transcripts
-		if(!input)
+		if (!input) {
 			return;
-
+		}
 		// scroll to view
-		this.refs.editor.scrollTop = input.offsetTop-200;
+		this.refs.editor.scrollTop = input.offsetTop - 200;
 
 		input.focus();
 	};
@@ -88,34 +88,35 @@ class ContentEditorView extends React.Component {
 			<div>
 				<div className={classes.contentAndMenuWrapper}>
 
-				<iframe id='contentframe' src={iframeUrl}
-						className={classes.iframe} frameBorder={0} />
+					<iframe id='contentframe' src={iframeUrl}
+							className={classes.iframe} frameBorder={0}/>
 					<div className={classes.menu}>
 						<div onClick={this.clickHighlightMode} className={classes.findTextButton}>
 							<i className='fa fa-pencil-square-o'></i>
-							Edit text
+							<span className={classes.buttonText}>Edit text item</span>
 						</div>
 					</div>
 				</div>
 				<div className={classes.editor} style={editorStyle} ref='editor'>
 
-					{groupKeys.map(groupKey => {
-						let splitKey = groupKey.split('-');
-						if (splitKey[splitKey.length - 1] === splitKey[splitKey.length - 2]) {
-							splitKey = _.take(splitKey, splitKey.length - 1);
-						}
-						const displayKey = splitKey.join(' → ');
+					<div className={classes.groupPanelsContainer}>
+						{groupKeys.map(groupKey => {
+							let splitKey = groupKey.split('-');
+							if (splitKey[splitKey.length - 1] === splitKey[splitKey.length - 2]) {
+								splitKey = _.take(splitKey, splitKey.length - 1);
+							}
+							const displayKey = splitKey.join(' → ');
 
-						return <div className={classes.group} key={groupKey}>
-							<div className={classes.groupTitle}>{displayKey}</div>
-							{groups[groupKey].map(key => <SingleTextItem
-								key={key}
-								textItemKey={key}
-								textItemValue={textItems[key]}
-								onChange={this.textItemChanged}/>)}
-						</div>;
-					})}
-
+							return <div className={classes.group} key={groupKey}>
+								<div className={classes.groupTitle}>{displayKey}</div>
+								{groups[groupKey].map(key => <SingleTextItem
+									key={key}
+									textItemKey={key}
+									textItemValue={textItems[key]}
+									onChange={this.textItemChanged}/>)}
+							</div>;
+						})}
+					</div>
 				</div>
 
 			</div>
