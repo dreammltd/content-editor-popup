@@ -1,8 +1,10 @@
 import {initTextItems} from '../redux/modules/textItems';
+import _ from 'lodash';
 
 class ParentApiInstance {
 	contentEventSource = null;
 	dispatch = null;
+	initialTextItemsForRevert = null;
 
 	handleMessage(event) {
 		const {type} = event.data;
@@ -40,6 +42,8 @@ class ParentApiInstance {
 	initContentEditor({defaults, textItems}) {
 		if (textItems) {
 			this.dispatch(initTextItems(textItems));
+			// clone initial items for reverting later
+			this.initialTextItemsForRevert = _.clone(textItems);
 		} else {
 			console.log('editor error - no textItems passed in.  this must be a deployed course for editing to work');
 		}
