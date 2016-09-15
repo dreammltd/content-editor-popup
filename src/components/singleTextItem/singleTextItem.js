@@ -36,8 +36,8 @@ export default class SingleTextItem extends Component {
 		const keyToDisplay = `${keySplit[keySplit.length-2]}-${keySplit[keySplit.length-1]}`;
 
 		return (<div>
-
 			<input type='text'
+				   id={`input-${textItemKey}`}
 				   title={keyToDisplay}
 				   className={classes.inputText}
 				   onChange={this.textChange}

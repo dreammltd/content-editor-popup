@@ -17,7 +17,15 @@ class ParentApiInstance {
 				this.contentEventSource = event.source;
 				this.initContentEditor(event.data.params);
 				break;
+			case 'selectTextItem':
+				this.selectTextItem(event.data.key);
+				break;
 		}
+	}
+
+	selectTextItem(key) {
+		// callback we set during init()
+		this.onSelectTextItem(key);
 	}
 
 	sendMessageToContent(message) {
@@ -43,7 +51,8 @@ class ParentApiInstance {
 		this.sendMessageToContent({type: 'startHighlightMode'});
 	}
 
-	init(dispatch) {
+	init({dispatch, onSelectTextItem}) {
+		this.onSelectTextItem = onSelectTextItem;
 		if (!dispatch) {
 			throw new Error('No dispatch passed to ParentApi init');
 		}

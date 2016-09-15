@@ -34,8 +34,21 @@ class ContentEditorView extends React.Component {
 
 	componentDidMount() {
 		const {dispatch} = this.context;
-		ParentEditorApi.init(dispatch);
+		ParentEditorApi.init({dispatch, onSelectTextItem: this.onSelectTextItem});
 	}
+
+	onSelectTextItem = (key) => {
+		// find the input with the key id
+		const input = document.getElementById(`input-${key}`);
+		// can be missing if we're not rendering input, e.g. transcripts
+		if(!input)
+			return;
+
+		// scroll to view
+		this.refs.editor.scrollTop = input.offsetTop-200;
+
+		input.focus();
+	};
 
 	clickHighlightMode = (event) => {
 		ParentEditorApi.startHighlightMode();
@@ -84,7 +97,7 @@ class ContentEditorView extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className={classes.editor} style={editorStyle}>
+				<div className={classes.editor} style={editorStyle} ref='editor'>
 
 					{groupKeys.map(groupKey => {
 						let splitKey = groupKey.split('-');
