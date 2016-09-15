@@ -86,15 +86,13 @@ class ContentEditorView extends React.Component {
 
 		return (
 			<div>
-				<div className={classes.contentAndMenuWrapper}>
 
 					<iframe id='contentframe' src={iframeUrl}
 							className={classes.iframe} frameBorder={0}/>
-					<div className={classes.menu}>
-						<div onClick={this.clickHighlightMode} className={classes.findTextButton}>
-							<i className='fa fa-pencil-square-o'></i>
-							<span className={classes.buttonText}>Edit text item</span>
-						</div>
+
+				<div className={classes.menu}>
+					<div onClick={this.clickHighlightMode} className={classes.circleButton}>
+						<span className={classes.circleButtonIcon}><i className='fa fa-pencil'></i></span>
 					</div>
 				</div>
 				<div className={classes.editor} style={editorStyle} ref='editor'>
