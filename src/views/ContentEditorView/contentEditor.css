@@ -1,20 +1,19 @@
-.iframe {
-	width: 1024px;
-	height: 700px;
-	float: left;
-	outline: rgba(0,0,0,0.5);
-}
 
 .editor {
 	height: 100%;
 	overflow: auto;
 }
 
-.group {
-	padding: 20px 25px;
+.panel {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	border-radius: 4px;
 	background: white;
+}
+
+.group {
+	composes: panel;
+	padding: 20px 25px;
+
 	margin: 20px 10px;
 }
 
@@ -28,10 +27,27 @@
 	text-transform: capitalize;
 }
 
-.findTextButton {
+.menu {
+	composes: panel;
 	padding: 10px 15px;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	border-radius: 4px;
-	background: white;
-	margin: 20px 10px;
+	margin: 5px 60px;
+}
+
+.contentAndMenuWrapper {
+	width: 1024px;
+	height: 700px;
+	float: left;
+}
+
+.iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.findTextButton {
+
+}
+
+.button {
+
 }

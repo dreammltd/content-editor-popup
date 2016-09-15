@@ -73,10 +73,19 @@ class ContentEditorView extends React.Component {
 
 		return (
 			<div>
+				<div className={classes.contentAndMenuWrapper}>
+
 				<iframe id='contentframe' src={iframeUrl}
-						className={classes.iframe} frameBorder={0}/>
+						className={classes.iframe} frameBorder={0} />
+					<div className={classes.menu}>
+						<div onClick={this.clickHighlightMode} className={classes.findTextButton}>
+							<i className='fa fa-pencil-square-o'></i>
+							Edit text
+						</div>
+					</div>
+				</div>
 				<div className={classes.editor} style={editorStyle}>
-					<div onClick={this.clickHighlightMode} className={classes.findTextButton}>Find text tool</div>
+
 					{groupKeys.map(groupKey => {
 						let splitKey = groupKey.split('-');
 						if (splitKey[splitKey.length - 1] === splitKey[splitKey.length - 2]) {
@@ -95,6 +104,7 @@ class ContentEditorView extends React.Component {
 					})}
 
 				</div>
+
 			</div>
 		);
 	}
