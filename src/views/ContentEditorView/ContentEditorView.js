@@ -37,6 +37,10 @@ class ContentEditorView extends React.Component {
 		ParentEditorApi.init(dispatch);
 	}
 
+	clickHighlightMode = (event) => {
+		ParentEditorApi.startHighlightMode();
+	};
+
 	windowResize() {
 		const {innerHeight: height} = window;
 		this.setState({height});
@@ -72,6 +76,7 @@ class ContentEditorView extends React.Component {
 				<iframe id='contentframe' src={iframeUrl}
 						className={classes.iframe} frameBorder={0}/>
 				<div className={classes.editor} style={editorStyle}>
+					<div onClick={this.clickHighlightMode} className={classes.findTextButton}>Find text tool</div>
 					{groupKeys.map(groupKey => {
 						let splitKey = groupKey.split('-');
 						if (splitKey[splitKey.length - 1] === splitKey[splitKey.length - 2]) {
@@ -79,7 +84,7 @@ class ContentEditorView extends React.Component {
 						}
 						const displayKey = splitKey.join(' → ');
 
-						return <div className={classes.group}>
+						return <div className={classes.group} key={groupKey}>
 							<div className={classes.groupTitle}>{displayKey}</div>
 							{groups[groupKey].map(key => <SingleTextItem
 								key={key}

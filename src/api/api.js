@@ -39,6 +39,10 @@ class ParentApiInstance {
 		this.sendMessageToContent({type: 'editorFound'});
 	}
 
+	startHighlightMode() {
+		this.sendMessageToContent({type: 'startHighlightMode'});
+	}
+
 	init(dispatch) {
 		if (!dispatch) {
 			throw new Error('No dispatch passed to ParentApi init');
