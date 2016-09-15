@@ -47,9 +47,12 @@ class ContentEditorView extends React.Component {
 	}
 
 	render() {
+		const iframeUrl = 'http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html';
 		const {textItems} = this.props;
 		const {height} = this.state;
 		const textItemKeys = Object.keys(textItems);
+
+		// filter and group textItems
 		const groups = _.groupBy(_.filter(textItemKeys, (key) => {
 			// filter out ignored suffixes
 			const splitKey = key.split('-');
@@ -66,7 +69,7 @@ class ContentEditorView extends React.Component {
 
 		return (
 			<div>
-				<iframe id='contentframe' src='http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html'
+				<iframe id='contentframe' src={iframeUrl}
 						className={classes.iframe} frameBorder={0}/>
 				<div className={classes.editor} style={editorStyle}>
 					{groupKeys.map(groupKey => {
