@@ -54,6 +54,10 @@ class ContentEditorView extends React.Component {
 		ParentEditorApi.startHighlightMode();
 	};
 
+	clickSave = (event) => {
+		//ParentEditorApi.startHighlightMode();
+	};
+
 	windowResize() {
 		const {innerHeight: height} = window;
 		this.setState({height});
@@ -86,14 +90,16 @@ class ContentEditorView extends React.Component {
 
 		return (
 			<div>
-
-					<iframe id='contentframe' src={iframeUrl}
-							className={classes.iframe} frameBorder={0}/>
-
+				<iframe id='contentframe' src={iframeUrl}
+						className={classes.iframe} frameBorder={0}/>
 				<div className={classes.menu}>
-					<div onClick={this.clickHighlightMode} className={classes.circleButton}>
+					<div onClick={this.clickHighlightMode} className={classes.circleButtonBlue}>
 						<span className={classes.circleButtonIcon}><i className='fa fa-pencil'></i></span>
 					</div>
+					<div onClick={this.clickSave} className={classes.circleButtonGreen}>
+						<span className={classes.circleButtonIcon}><i className='fa fa-save'></i></span>
+					</div>
+
 				</div>
 				<div className={classes.editor} style={editorStyle} ref='editor'>
 

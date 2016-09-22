@@ -58,6 +58,14 @@
 	color: #fff;
 }
 
+.circleButtonBlue {
+	background: #2196F3;
+}
+
+.circleButtonGreen {
+	background: #21F396;
+}
+
 .circleButton:hover {
 	cursor: pointer;
 	box-shadow: 0 4px 6px 0 rgba(0,0,0,0.16),0 4px 12px 0 rgba(0,0,0,0.12);
