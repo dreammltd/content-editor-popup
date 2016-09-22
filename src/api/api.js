@@ -5,6 +5,7 @@ class ParentApiInstance {
 	contentEventSource = null;
 	dispatch = null;
 	initialTextItemsForRevert = null;
+	changedItems = {};
 
 	handleMessage(event) {
 		const {type} = event.data;
@@ -72,7 +73,12 @@ class ParentApiInstance {
 	}
 
 	textItemChanged({key, value}) {
+		this.changedItems[key] = value;
 		this.sendMessageToContent({type: 'updateText', key, value});
+	}
+
+	getChangedItems() {
+		return this.changedItems;
 	}
 }
 
