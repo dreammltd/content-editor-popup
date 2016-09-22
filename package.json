@@ -83,7 +83,8 @@
     "redux-logger": "^2.5.2",
     "redux-thunk": "^1.0.0",
     "url": "^0.11.0",
-    "yargs": "^3.18.0"
+    "yargs": "^3.18.0",
+	"lodash": "latest"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
