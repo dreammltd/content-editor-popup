@@ -62,7 +62,19 @@ class ContentEditorView extends React.Component {
 				' URL and SCORM zip can take up to 20 minutes.  ' +
 				'You will be emailed the links once they are ready.\n\n' +
 				'Ready to proceed and save?')) {
-
+			// trigger save
+			fetch('', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					textItems: ParentEditorApi.getChangedItems()
+				})
+			}).then(response => {
+				console.log(response);
+			});
 		}
 	};
 
