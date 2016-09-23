@@ -58,13 +58,16 @@ class ContentEditorView extends React.Component {
 	};
 
 	clickSave = (event) => {
-		if(confirm('Are you sure you have finished editing?  Creating your updated course URL and SCORM zip can take up to 20 minutes.  You will be emailed the links once they are ready.\n\nReady to proceed and save?')) {
+		if (confirm('Are you sure you have finished editing?  Creating your updated course' +
+				' URL and SCORM zip can take up to 20 minutes.  ' +
+				'You will be emailed the links once they are ready.\n\n' +
+				'Ready to proceed and save?')) {
 
 		}
 	};
 
 	clickCancel = (event) => {
-		if(confirm('Are you sure you want to undo all of your changes?')){
+		if (confirm('Are you sure you want to undo all of your changes?')) {
 			window.location.reload();
 		}
 	};
@@ -111,9 +114,9 @@ class ContentEditorView extends React.Component {
 					</div>
 					{
 						displaySaveAndCancel ? <div onClick={this.clickSave}
-																	className={classes.circleButtonGreen}>
-								<span className={classes.circleButtonIcon}><i className='fa fa-save'></i></span>
-							</div> : null
+													className={classes.circleButtonGreen}>
+							<span className={classes.circleButtonIcon}><i className='fa fa-save'></i></span>
+						</div> : null
 					}
 					{
 						displaySaveAndCancel ? <div onClick={this.clickCancel}
