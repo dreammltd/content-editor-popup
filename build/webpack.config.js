@@ -20,10 +20,12 @@ const webpackConfig = {
 	},
 	module: {}
 };
+
 // ------------------------------------
 // Entry Points
 // ------------------------------------
 const APP_ENTRY_PATH = paths.base(config.dir_client) + '/main.js';
+debug('APP_ENTRY_PATH = '+APP_ENTRY_PATH);
 
 webpackConfig.entry = {
 	app: __DEV__
