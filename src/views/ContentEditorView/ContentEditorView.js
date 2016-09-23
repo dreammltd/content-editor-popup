@@ -20,7 +20,10 @@ class ContentEditorView extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {height: window.innerHeight};
+		this.state = {
+			height: window.innerHeight,
+			changedItems: {}
+		};
 	}
 
 	componentWillMount() {
@@ -55,22 +58,31 @@ class ContentEditorView extends React.Component {
 	};
 
 	clickSave = (event) => {
-		//ParentEditorApi.startHighlightMode();
+		if(confirm('Are you sure you have finished editing?  Creating your updated course URL and SCORM zip can take up to 20 minutes.  You will be emailed the links once they are ready.\n\nReady to proceed and save?')) {
+
+		}
+	};
+
+	clickCancel = (event) => {
+		if(confirm('Are you sure you want to undo all of your changes?')){
+			window.location.reload();
+		}
 	};
 
 	windowResize() {
 		const {innerHeight: height} = window;
-		this.setState({height});
+		this.setState({height, changedItems: this.state.changedItems});
 	}
 
-	textItemChanged({key, value}) {
+	textItemChanged = ({key, value}) => {
 		ParentEditorApi.textItemChanged({key, value});
-	}
+		this.setState({height: this.state.height, changedItems: ParentEditorApi.getChangedItems()});
+	};
 
 	render() {
 		const iframeUrl = 'http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html';
 		const {textItems} = this.props;
-		const {height} = this.state;
+		const {height, changedItems} = this.state;
 		const textItemKeys = Object.keys(textItems);
 
 		// filter and group textItems
@@ -87,6 +99,7 @@ class ContentEditorView extends React.Component {
 
 		const groupKeys = Object.keys(groups);
 		const editorStyle = {height};
+		const displaySaveAndCancel = Object.keys(changedItems).length > 0;
 
 		return (
 			<div>
@@ -96,10 +109,18 @@ class ContentEditorView extends React.Component {
 					<div onClick={this.clickHighlightMode} className={classes.circleButtonBlue}>
 						<span className={classes.circleButtonIcon}><i className='fa fa-pencil'></i></span>
 					</div>
-					<div onClick={this.clickSave} className={classes.circleButtonGreen}>
-						<span className={classes.circleButtonIcon}><i className='fa fa-save'></i></span>
-					</div>
-
+					{
+						displaySaveAndCancel ? <div onClick={this.clickSave}
+																	className={classes.circleButtonGreen}>
+								<span className={classes.circleButtonIcon}><i className='fa fa-save'></i></span>
+							</div> : null
+					}
+					{
+						displaySaveAndCancel ? <div onClick={this.clickCancel}
+													className={classes.circleButtonRed}>
+							<span className={classes.circleButtonIcon}><i className='fa fa-remove'></i></span>
+						</div> : null
+					}
 				</div>
 				<div className={classes.editor} style={editorStyle} ref='editor'>
 

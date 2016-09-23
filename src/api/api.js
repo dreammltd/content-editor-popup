@@ -73,7 +73,13 @@ class ParentApiInstance {
 	}
 
 	textItemChanged({key, value}) {
-		this.changedItems[key] = value;
+		if (this.initialTextItemsForRevert[key] === value) {
+			// switched it back to its original state, so remove tracked change
+			delete this.changedItems[key];
+		} else {
+			this.changedItems[key] = value;
+		}
+
 		this.sendMessageToContent({type: 'updateText', key, value});
 	}
 

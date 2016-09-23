@@ -44,7 +44,7 @@
 	position: absolute;
 	left: 975px;
 	top: 5px;
-
+	width:50px;
 }
 
 .circleButton {
@@ -56,14 +56,22 @@
 	height: 50px;
 	width: 50px;
 	color: #fff;
+	margin-bottom: 5px;
 }
 
 .circleButtonBlue {
+	composes: circleButton;
 	background: #2196F3;
 }
 
 .circleButtonGreen {
-	background: #21F396;
+	composes: circleButton;
+	background: #11a366;
+}
+
+.circleButtonRed {
+	composes: circleButton;
+	background: #a31134;
 }
 
 .circleButton:hover {
