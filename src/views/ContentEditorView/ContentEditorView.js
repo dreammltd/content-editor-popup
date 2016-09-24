@@ -73,7 +73,8 @@ class ContentEditorView extends React.Component {
 					textItems: ParentEditorApi.getChangedItems()
 				})
 			}).then(response => {
-				console.log(response);
+				// we're saved
+				this.setState({...this.state, saved: true});
 			});
 		}
 	};
@@ -86,12 +87,12 @@ class ContentEditorView extends React.Component {
 
 	windowResize() {
 		const {innerHeight: height} = window;
-		this.setState({height, changedItems: this.state.changedItems});
+		this.setState({height, changedItems: this.state.changedItems, saved: false});
 	}
 
 	textItemChanged = ({key, value}) => {
 		ParentEditorApi.textItemChanged({key, value});
-		this.setState({height: this.state.height, changedItems: ParentEditorApi.getChangedItems()});
+		this.setState({height: this.state.height, changedItems: ParentEditorApi.getChangedItems(), saved: false});
 	};
 
 	render() {
@@ -102,7 +103,7 @@ class ContentEditorView extends React.Component {
 		const iframeUrl = `${job.coursesBaseUrl}${branch}/${module}/index.html`;
 
 		const {textItems} = this.props;
-		const {height, changedItems} = this.state;
+		const {height, changedItems, saved} = this.state;
 		const textItemKeys = Object.keys(textItems);
 
 		// filter and group textItems
@@ -121,10 +122,16 @@ class ContentEditorView extends React.Component {
 		const editorStyle = {height};
 		const displaySaveAndCancel = Object.keys(changedItems).length > 0;
 
+		if (saved) {
+			return <div> Thanks for your updates! Your changes are being processed into a new e-learning course. <br/>
+				In around 5-10 minutes you will be provided with new links via email ({user.email}).</div>;
+		}
+
 		return (
 			<div>
 				<iframe id='contentframe' src={iframeUrl}
-						className={classes.iframe} frameBorder={0}/><br/>
+						className={classes.iframe} frameBorder={0}/>
+				<br/>
 				<div>{user.name} editing {job.title}</div>
 				<div className={classes.menu}>
 					<div onClick={this.clickHighlightMode} className={classes.circleButtonBlue}>
