@@ -59,9 +59,8 @@ class ContentEditorView extends React.Component {
 	};
 
 	clickSave = (event) => {
-		if (confirm('Are you sure you have finished editing?  Creating your updated course' +
-				' URL and SCORM zip can take up to 20 minutes.  ' +
-				'You will be emailed the links once they are ready.\n\n' +
+		if (confirm('Are you sure you made all of your changes?\n\n' +
+				'Creating your new course can take 5-10 minutes.\n\n' +
 				'Ready to proceed and save?')) {
 			// trigger save
 			fetch('', {
