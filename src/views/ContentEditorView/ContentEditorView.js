@@ -95,7 +95,13 @@ class ContentEditorView extends React.Component {
 	};
 
 	render() {
-		const iframeUrl = 'http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html';
+		// grab settings from window, rendered by alfred on server into the html
+		const {job,user,branch,module} = window.settings;
+
+		const iframeUrl = `${job.coursesBaseUrl}${branch}/${module}/index.html`;
+
+		//'http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html';
+
 		const {textItems} = this.props;
 		const {height, changedItems} = this.state;
 		const textItemKeys = Object.keys(textItems);
