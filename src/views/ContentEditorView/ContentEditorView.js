@@ -108,6 +108,10 @@ class ContentEditorView extends React.Component {
 
 		// filter and group textItems
 		const groups = _.groupBy(_.filter(textItemKeys, (key) => {
+			// exclude engine
+			if (key.indexOf('components-containers-engine') == 0)
+				return false;
+
 			// filter out ignored suffixes
 			const splitKey = key.split('-');
 			const suffix = splitKey[splitKey.length - 1];
@@ -132,7 +136,8 @@ class ContentEditorView extends React.Component {
 			<div>
 				<div className={classes.iframeContainer}>
 					<iframe id='contentframe' src={iframeUrl}
-						className={classes.iframe} frameBorder={0}/><br/>
+							className={classes.iframe} frameBorder={0}/>
+					<br/>
 					<div className={classes.textUnderCourse}>{user.name} editing {job.title}</div>
 				</div>
 				<div className={classes.menu}>
