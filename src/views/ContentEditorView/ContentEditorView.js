@@ -124,16 +124,18 @@ class ContentEditorView extends React.Component {
 		const displaySaveAndCancel = Object.keys(changedItems).length > 0;
 
 		if (saved) {
-			return <div> Thanks for your updates! Your changes are being processed into a new e-learning course. <br/>
-				In around 5-10 minutes you will be provided with new links via email ({user.email}).</div>;
+			return <div className={classes.saved}> Thank you for your updates! <br/><br/>
+				Your changes are being processed into a new e-learning course. <br/>
+				In around 5-10 minutes you will be provided with new links via email to {user.email}.</div>;
 		}
 
 		return (
 			<div>
-				<iframe id='contentframe' src={iframeUrl}
-						className={classes.iframe} frameBorder={0}/>
-				<br/>
-				<div>{user.name} editing {job.title}</div>
+				<div className={classes.iframeContainer}>
+					<iframe id='contentframe' src={iframeUrl}
+						className={classes.iframe} frameBorder={0}/><br/>
+					<div className={classes.textUnderCourse}>{user.name} editing {job.title}</div>
+				</div>
 				<div className={classes.menu}>
 					<div onClick={this.clickHighlightMode} className={classes.circleButtonBlue}>
 						<span className={classes.circleButtonIcon}><i className='fa fa-pencil'></i></span>

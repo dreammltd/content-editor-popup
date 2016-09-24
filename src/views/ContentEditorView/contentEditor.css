@@ -3,10 +3,23 @@
 	overflow: auto;
 }
 
+.iframeContainer {
+	width: 1024px;
+	float: left;
+}
+
 .iframe {
 	width: 1024px;
 	height: 700px;
-	float: left;
+}
+
+.textUnderCourse {
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	letter-spacing: -0.015em;
+	color: #444;
+	margin-top: 5px;
+	text-transform: capitalize;
 }
 
 .materialShadow {
@@ -84,4 +97,10 @@
 	top: 14px;
 	left: 17px;
 	font-size: 20px;
+}
+
+.saved {
+	composes: groupTitle;
+	margin: 100px;
+	width:500px;
 }
