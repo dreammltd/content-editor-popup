@@ -22,7 +22,8 @@ class ContentEditorView extends React.Component {
 		super(props);
 		this.state = {
 			height: window.innerHeight,
-			changedItems: {}
+			changedItems: {},
+			saved: false
 		};
 	}
 
