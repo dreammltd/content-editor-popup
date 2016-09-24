@@ -96,11 +96,10 @@ class ContentEditorView extends React.Component {
 
 	render() {
 		// grab settings from window, rendered by alfred on server into the html
-		const {job,user,branch,module} = window.settings;
+		const {job, user, branch, module} = window.settings;
 
+		// e.g. 'http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html';
 		const iframeUrl = `${job.coursesBaseUrl}${branch}/${module}/index.html`;
-
-		//'http://courses.dreamm.co.uk/roche/d1092/babel5to6/m1/index.html';
 
 		const {textItems} = this.props;
 		const {height, changedItems} = this.state;
@@ -125,7 +124,8 @@ class ContentEditorView extends React.Component {
 		return (
 			<div>
 				<iframe id='contentframe' src={iframeUrl}
-						className={classes.iframe} frameBorder={0}/>
+						className={classes.iframe} frameBorder={0}/><br/>
+				<div>{user.name} editing {job.title}</div>
 				<div className={classes.menu}>
 					<div onClick={this.clickHighlightMode} className={classes.circleButtonBlue}>
 						<span className={classes.circleButtonIcon}><i className='fa fa-pencil'></i></span>
